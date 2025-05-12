@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+
+            <div class="mb-4">
+                <h1 class="display-4">Budjetingizni Boshqaring</h1>
+                <p class="lead">Kirim va chiqimlaringizni professional boshqarish tizimi</p>
+            </div>
+
+            <div class="mb-5">
+                <img src="https://via.placeholder.com/600x300" alt="Budget Illustration" class="img-fluid rounded">
+            </div>
+
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-5">
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 gap-3">
+                    <i class="bi bi-box-arrow-in-right"></i> Tizimga kirish
+                </a>
+                <a href="{% url 'signup' %}" class="btn btn-success btn-lg px-4">
+                    <i class="bi bi-person-plus"></i> Ro'yxatdan o'tish
+                </a>
+            </div>
+
+            <div class="row mt-5">
+                <h2 class="mb-4">Bizning Xususiyatlar</h2>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="bi bi-graph-up fs-1 text-primary mb-3"></i>
+                            <h5 class="card-title">Kirim-Chiqim Statistikasi</h5>
+                            <p class="card-text">Har oyning kirim va chiqimlarini grafik shaklda kuzatib boring.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="bi bi-tag fs-1 text-success mb-3"></i>
+                            <h5 class="card-title">Kategoriyalar Boshqaruvi</h5>
+                            <p class="card-text">Xarajatlaringizni turli kategoriyalarga bo'lib boshqaring.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="bi bi-file-earmark-bar-graph fs-1 text-info mb-3"></i>
+                            <h5 class="card-title">Detalli Hisobotlar</h5>
+                            <p class="card-text">Har qanday vaqt oralig'ida detalli hisobotlar oling.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-light p-5 rounded-3 mt-4">
+                <h2>Hoziroq boshlang!</h2>
+                <p class="lead">Pul mablag'laringizni professional darajada boshqarishni istaysizmi?</p>
+                <a class="btn btn-primary btn-lg" href="{% url 'signup' %}">Bepul ro'yxatdan o'tish</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        color: white;
+        border-radius: 10px;
+        padding: 3rem;
+        margin-bottom: 2rem;
+    }
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

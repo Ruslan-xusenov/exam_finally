@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Statistika{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Oylik Kirim-chiqimlar Statistikasi</h2>
+    
+    <p><strong>Kirim:</strong> {{ income }} UZS</p>
+    <p><strong>Chiqim:</strong> {{ expenses }} UZS</p>
+    <p><strong>Umumiy Balans:</strong> {{ balance }} UZS</p>
+
+    <h3>Oylik Transaktsiyalar:</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Turi</th>
+                <th>Summasi</th>
+                <th>Tavsif</th>
+                <th>Sana</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.type }}</td>
+                <td>{{ transaction.amount }} UZS</td>
+                <td>{{ transaction.description }}</td>
+                <td>{{ transaction.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
