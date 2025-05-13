@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ox$#qb*p2kh#f!a7vgv#1j7c^6o&pr1n(#56g9er!tq-rxumsf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['exam-finally-3.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
