@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Biz haqimizda{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-md-8">
+        <h2 class="mb-4 fw-bold text-primary">Biz haqimizda</h2>
+        <p class="lead text-muted">
+          Bizning moliyaviy boshqaruv platformamiz orqali siz o‘z daromad va xarajatlaringizni aniq va samarali tarzda kuzatib borishingiz mumkin.
+        </p>
+        <p>
+          Sayt foydalanuvchilarga kirim va chiqimlarni qo‘shish, kategoriyalar bo‘yicha filtrlash, oynalik va yillik hisobotlarni ko‘rish imkonini beradi.
+          Maqsadimiz – sizga shaxsiy moliyaviy nazoratda yordam berish.
+        </p>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary mt-3 rounded-pill px-4 py-2">Boshqaruv paneliga o‘tish</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

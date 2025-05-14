@@ -1,6 +1,7 @@
 from django import forms
-from .models import Transaction, Category, UserProfile
+from .models import Transaction, Category, User
 from django.contrib.auth.models import User
+import re
 
 class TransactionForm(forms.ModelForm):
     class Meta:
@@ -17,34 +18,33 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ['phone', 'address', 'profile_picture']
+import re
+from django import forms
+from .models import User  # Foydalanuvchi modelingiz
 
 class SignupForm(forms.Form):
-    identifier = forms.CharField(
-        label="Email yoki telefon raqam",
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email yoki telefon raqam'})
-    )
-    password = forms.CharField(
-        label="Parol",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Parol'})
-    )
-    confirm_password = forms.CharField(
-        label="Parolni tasdiqlang",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Parolni tasdiqlang'})
-    )
+    username = forms.CharField(max_length=150)
+    identifier = forms.CharField(label="Email yoki telefon", max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Bu username allaqachon mavjud.")
+        return username
 
-        if password and confirm_password and password != confirm_password:
-            raise forms.ValidationError("Parollar mos emas!")
-        return cleaned_data
-
-    def is_email(self):
+    def clean_identifier(self):
         identifier = self.cleaned_data.get('identifier')
-        return '@' in identifier if identifier else False
+        if not self.is_email(identifier) and not self.is_phone(identifier):
+            raise forms.ValidationError("Noto‘g‘ri email yoki telefon raqam.")
+        return identifier    
+
+    # is_email metodiga self argumentini qo'shish
+    def is_email(self, identifier):
+        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        return re.match(email_regex, identifier) is not None
+
+    # is_phone metodiga self argumentini qo'shish
+    def is_phone(self, identifier):
+        phone_regex = r'^\+?[\d\s\-]+$'
+        return re.match(phone_regex, identifier) is not None
