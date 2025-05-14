@@ -46,8 +46,6 @@ LANGUAGES = [
     ('ru', 'Russian'),
 ]
 
-LOCALE_PATHS = [BASE_DIR / 'locale']
-
 import os
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
