@@ -18,7 +18,4 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('add_transaction/', views.add_transaction, name='add_transaction'),
     path('statistics/', views.statistics, name='statistics'),
-    # path('en/', views.home, name='set_language'),
-    # path('uz/', views.home, name='set_language'),
-    # path('ru/', views.home, name='set_language'),
 ]

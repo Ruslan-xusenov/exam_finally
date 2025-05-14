@@ -18,10 +18,6 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
-import re
-from django import forms
-from .models import User  # Foydalanuvchi modelingiz
-
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=150)
     identifier = forms.CharField(label="Email yoki telefon", max_length=100)
@@ -39,12 +35,10 @@ class SignupForm(forms.Form):
             raise forms.ValidationError("Noto‘g‘ri email yoki telefon raqam.")
         return identifier    
 
-    # is_email metodiga self argumentini qo'shish
     def is_email(self, identifier):
         email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         return re.match(email_regex, identifier) is not None
 
-    # is_phone metodiga self argumentini qo'shish
     def is_phone(self, identifier):
         phone_regex = r'^\+?[\d\s\-]+$'
         return re.match(phone_regex, identifier) is not None
